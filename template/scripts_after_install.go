@@ -5,5 +5,5 @@ var scripts_after_install = `#!/bin/bash
 set -eu
 # cosas para hacer después de instalar el paquete aquí:
 #
-echo After install
+echo OAS after install
 `

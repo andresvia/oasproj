@@ -1,0 +1,3 @@
+# Este archivo fue creado con "oasproj init" y será sobre-escrito con "oasproj update --force"
+# este instalador es válido sólo para ambientes Vagrant o de pruebas locales
+sudo yum --nogpgcheck install -y /tmp/target/*.rpm

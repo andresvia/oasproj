@@ -1,8 +1,19 @@
 # Este archivo fue creado con "oasproj init" y será sobre-escrito con "oasproj update --force"
-# Variables de entorno disponibles durante construcción
 
-# ${OAS_VERSION}      => contiene la version a construir
-# ${OAS_PACKAGE_NAME} => nombre del paquete que proviene del archivo de descripción de proyecto
+# Estas son las variables de entorno disponibles durante la construcción
+
+# "${OAS_VERSION}"      => contiene la version a construir
+# "${OAS_NAME}"         => nombre del paquete que proviene del archivo de descripción de proyecto
+
+# "${GO_BUILD}"         => contiene un comando "go build" dependiente de la plataforma objetivo que puede hacer compilación directa o crosscompilación de binarios de Go
+# "${GO_ARTIFACT}"      => contiene el artefacto dependiente de la plataforma objetivo que se construyó
+
+# Aquí vienen los comandos para construir el artefacto
 
 go get -v ./...
-go build -v ./...
+$GO_BUILD ./...
+
+# Y aquí vienen los comandos para copiar el artefacto a su destino final en el sistema operativo
+
+mkdir -p target-root/usr/bin
+cp -v "${GO_ARTIFACT}" "target-root/usr/bin/${OAS_NAME}"

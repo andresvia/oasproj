@@ -5,5 +5,5 @@ var scripts_before_remove = `#!/bin/bash
 set -eu
 # cosas para hacer antes de remover el paquete aquí:
 #
-echo Before remove
+echo OAS before remove
 `

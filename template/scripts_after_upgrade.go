@@ -5,5 +5,5 @@ var scripts_after_upgrade = `#!/bin/bash
 set -eu
 # cosas para hacer después de actualizar el paquete aquí:
 #
-echo After upgrade
+echo OAS after upgrade
 `

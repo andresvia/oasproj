@@ -5,5 +5,5 @@ var scripts_before_upgrade = `#!/bin/bash
 set -eu
 # cosas para hacer antes de actulizar el paquete aquí:
 #
-echo Before upgrade
+echo OAS before upgrade
 `

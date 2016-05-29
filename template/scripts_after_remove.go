@@ -5,5 +5,5 @@ var scripts_after_remove = `#!/bin/bash
 set -eu
 # cosas para hacer después de remover el paquete aquí:
 #
-echo After remove
+echo OAS after remove
 `

@@ -3,4 +3,4 @@
 set -eu
 # cosas para hacer antes de instalar el paquete aquí:
 #
-echo Before install
+echo OAS before install

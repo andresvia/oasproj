@@ -1,4 +1,8 @@
-# Este archivo fue creado con "oasproj init" y será sobre-escrito con "oasproj update"
+package template
+
+var gitignore = `# {{.Update}}
+{{if eq (.Project.Programming_language) "Go" -}}
+
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
 *.o
 *.a
@@ -24,9 +28,12 @@ _testmain.go
 *.test
 *.prof
 
-oasproj
-oasproj_*
+{{.Project.Project_name}}
+{{.Project.Project_name}}_*
+
+{{- end}}
 
 target
 target-root
 .vagrant
+`
