@@ -1,0 +1,21 @@
+language: go
+go:
+- 1.6
+addons:
+  apt:
+    packages:
+    - ruby-dev
+    - gcc
+    - make
+    - rpm
+before_install:
+- gem install fpm
+deploy:
+  provider: releases
+  api_key:
+    secure: NVq5pm068e0VBMArGuE5SkM/v5KO9BOfAU55EYBQEdiamqXM2BntWyN/vck4IqfY9inW3P8bZXFtvZ2nLlOwuQzbDrneJVwae3u29XaP9PL6VKjIm700lcU2r4vKf48zaq7tUtxJ6C+UUA91GKhcXwwRSGaehpfQ4KjibWhH1vxsAGYScgCl5wLjytzR9upvmiybpZStSNLscG32LDmJ2z7iQJUQBRO+uPV8MzBc86i5fvMtd5/i3G7CFzlKd9YomM3D0l0Ak4MT1kvOuL9iXm22oGf5HmG/00cipP7YNGddJxhn3hj4ap8VKu0GVVAa3FEdvt2ePvPSvH44Fiq5OgHCoijZfpwfvBJBPKraJXCf+CUPMxCEXnEg7A0VCsfFGC45rpBAKaU0gJnwoazbtn141lHZJnYse7htfbliTHwlJ+g24BaE3/c2X1CnwIYHVhOYdyLhcWJDBUOpIbdyZGu+bLDd9unNir562NLBpd+72CGc0RUOZDMSHy5C+WbEWrnZa8BOBWJyvWv4YNko21GTZMou5t3VumYjErJcOBr5GUaBK3dUMxjxvQv9OlrJ6WVKQT7mZcVKDF06SwnKD3FKFtqRlK+1LuNW2oOm6I1gMn93F7pMaHPx+AVLeBv+SCBXIfAygEi38zHqLYJJKF9v7CPXzozadT4Uy3z+rXU=
+  file_glob: true
+  file: target/*
+  skip_cleanup: true
+  on:
+    tags: true
