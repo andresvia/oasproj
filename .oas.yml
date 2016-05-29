@@ -6,10 +6,11 @@ project_framework:
 organizational_unit: Interno
 package_dependencies:
 build_dependencies:
-- rpm
 - gcc
+- rpm
 - make
 - ruby
-- ruby-devel
 - golang
+- ruby-devel
 - travis (gem)
+- github.com/mitchellh/gox (go)

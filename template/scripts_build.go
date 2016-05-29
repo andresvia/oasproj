@@ -15,7 +15,8 @@ var scripts_build = `# {{.ForceUpdate}}
 # Aquí vienen los comandos para construir el artefacto
 
 go get -v ./...
-$GO_BUILD ./...
+echo $GO_BUILD
+$GO_BUILD
 
 # Y aquí vienen los comandos para copiar el artefacto a su destino final en el sistema operativo
 
