@@ -11,7 +11,11 @@
 # Aquí vienen los comandos para construir el artefacto
 
 go get -v ./...
+set -x
+ls -l
 $GO_BUILD ./...
+ls -l
+set +x
 
 # Y aquí vienen los comandos para copiar el artefacto a su destino final en el sistema operativo
 
