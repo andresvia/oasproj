@@ -1,0 +1,9 @@
+project_name: Proyecto Inválido
+project_description: Este es un proyecto de prueba inválido
+project_purpose: Probar que al cargar este proyecto se entra en pánico
+programming_language: Go
+organizational_unit: 0
+package_dependencies:
+  name1: val1
+  name2: val2
+  name3: val3

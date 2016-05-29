@@ -1,0 +1,7 @@
+project_name: oasproj
+project_description: Maneja los proyectos de la OAS
+project_purpose: Estandarizar el proceso de desarrollo de la OAS
+programming_language: Go
+project_framework:
+organizational_unit: Interno
+package_dependencies:
