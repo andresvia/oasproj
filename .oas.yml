@@ -5,3 +5,9 @@ programming_language: Go
 project_framework:
 organizational_unit: Interno
 package_dependencies:
+build_dependencies:
+- gcc
+- make
+- ruby
+- ruby-devel
+- golang

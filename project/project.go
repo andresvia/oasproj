@@ -18,6 +18,8 @@ Lenguaje de programación: {{.Programming_language}}
 Marco de trabajo de proyecto: {{.Project_framework}}
 Unidad organizacional: {{.Organizational_unit}}
 Dependencias del paquete: {{range .Package_dependencies}}
+- {{.}}{{end}}
+Dependencias de compilación: {{range .Build_dependencies}}
 - {{.}}{{end}}`
 
 type Project struct {
@@ -28,6 +30,7 @@ type Project struct {
 	Project_framework    string   `yaml:project_framework`
 	Organizational_unit  string   `yaml:organizational_unit`
 	Package_dependencies []string `yaml:package_dependencies`
+	Build_dependencies   []string `yaml:build_dependencies`
 }
 
 func (p Project) String() (s string) {
