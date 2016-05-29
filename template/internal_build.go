@@ -40,7 +40,7 @@ then
   gem install fpm
 fi
 
-if fpm --version
+if fpm --version > /dev/null
 then
   fpm_extra_flags=""
   if [ -n "${OAS_SIGN_PACKAGE}" ]
@@ -49,7 +49,7 @@ then
   fi
   fpm_dependencies=""
 {{range .Project.Package_dependencies -}}
-    fpm_dependencies="${fpm_dependencies} -d {{.}}"
+    fpm_dependencies="${fpm_dependencies} -d '{{.}}'"
 {{- end}}
   fpm --package=target -C target-root -s dir -t rpm $fpm_dependencies --name="${OAS_NAME}" --version="${OAS_VERSION}" --before-install scripts/before-install --after-install scripts/after-install --before-remove scripts/before-remove --after-remove scripts/after-remove --before-upgrade scripts/before-upgrade --after-upgrade scripts/after-upgrade --rpm-os linux ${fpm_extra_flags} .
 else
