@@ -38,10 +38,10 @@ func (p Project) String() (s string) {
 		if err = t.Execute(&txt, &p); err == nil {
 			s = txt.String()
 		} else {
-			panic("Error ejecutando la plantilla: " + err.Error())
+			s = "TEMPLATE_ERROR=Error ejecutando la plantilla: " + err.Error()
 		}
 	} else {
-		panic("Error en la plantilla: " + err.Error())
+		s = "TEMPLATE_ERROR=Error en la plantilla: " + err.Error()
 	}
 	return
 }

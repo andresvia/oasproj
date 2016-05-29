@@ -1,0 +1,11 @@
+# Este archivo fue creado con "oasproj init" y será sobre-escrito con "oasproj update --force"
+[Unit]
+Description=udpack
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/oasproj
+Type=oneshot
+
+[Install]
+WantedBy=default.target

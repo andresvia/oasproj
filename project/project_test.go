@@ -34,7 +34,7 @@ func TestLoadProject(t *testing.T) {
 		})
 		Convey("Tiene una representación textual correcta", func() {
 			So(fmt.Sprintf("%s", p), ShouldNotBeEmpty)
-			So(fmt.Sprintf("%s", p), ShouldNotStartWith, "%!s(PANIC=")
+			So(fmt.Sprintf("%s", p), ShouldNotStartWith, "TEMPLATE_ERROR=")
 		})
 
 	})

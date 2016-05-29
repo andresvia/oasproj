@@ -24,3 +24,5 @@ _testmain.go
 *.prof
 
 oasproj
+target
+target-root

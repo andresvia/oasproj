@@ -1,0 +1,6 @@
+#!/bin/bash
+# Este archivo fue creado con "oasproj init" y será sobre-escrito con "oasproj update --force"
+set -eu
+# cosas para hacer después de instalar el paquete aquí:
+#
+echo After install

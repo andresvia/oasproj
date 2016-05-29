@@ -1,6 +1,8 @@
 package template
 
-var license = `The MIT License (MIT)
+var license = `{{.Update}}
+=====================
+The MIT License (MIT)
 
 Copyright (c) 2016 Oficina Asesora de Sistemas
 

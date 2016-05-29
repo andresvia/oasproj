@@ -1,6 +1,7 @@
 package template
 
-var makefile = `all:
+var makefile = `# {{.Update}}
+all:
 	bash .internal/build
 
 test:

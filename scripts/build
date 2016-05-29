@@ -1,3 +1,4 @@
+# Este archivo fue creado con "oasproj init" y será sobre-escrito con "oasproj update --force"
 # Variables de entorno disponibles durante construcción
 
 # ${OAS_VERSION}      => contiene la version a construir

@@ -8,6 +8,10 @@ import (
 )
 
 func main() {
+	for _, commonFlag := range commonFlags {
+		updateFlags = append(updateFlags, commonFlag)
+		initFlags = append(initFlags, commonFlag)
+	}
 	app := cli.NewApp()
 	app.Name = "oasproj"
 	app.Usage = "Maneja proyectos de la OAS"
@@ -22,18 +26,13 @@ func main() {
 			Name:   "init",
 			Usage:  "inicializa un projecto",
 			Action: command.Init,
+			Flags:  initFlags,
 		},
 		cli.Command{
 			Name:   "update",
 			Usage:  "actualiza un projecto",
 			Action: command.Update,
-			Flags: []cli.Flag{
-				cli.BoolFlag{
-					Name:   "force",
-					Usage:  "fuerza recrear el projecto",
-					EnvVar: "OAS_PROJ_FORCE_CREATE",
-				},
-			},
+			Flags:  updateFlags,
 		},
 		cli.Command{
 			Name:   "check",
@@ -50,3 +49,20 @@ func main() {
 		log.Fatal(err)
 	}
 }
+
+var commonFlags = []cli.Flag{
+	cli.BoolFlag{
+		Name:  "with-daemon",
+		Usage: "Crea el archivo de inicialización de systemd",
+	},
+}
+
+var updateFlags = []cli.Flag{
+	cli.BoolFlag{
+		Name:   "force",
+		Usage:  "fuerza recrear el projecto",
+		EnvVar: "OAS_PROJ_FORCE_CREATE",
+	},
+}
+
+var initFlags = []cli.Flag{}
