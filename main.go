@@ -41,10 +41,15 @@ func main() {
 			Action: command.Check,
 		},
 		cli.Command{
-			Name:   "validate",
-			Usage:  "valida que el proyecto este listo para publicación",
-			Action: command.Validate,
+			Name:   "builddeps",
+			Usage:  "instala dependencias de compilación",
+			Action: command.Builddeps,
 		},
+		//cli.Command{
+		//	Name:   "validate",
+		//	Usage:  "valida que el proyecto este listo para publicación",
+		//	Action: command.Validate,
+		//},
 	}
 	if err := app.Run(os.Args); err != nil {
 		log.Fatal(err)
@@ -101,7 +106,7 @@ var initFlags = []cli.Flag{
 		Usage: "dependencias de instalación",
 	},
 	cli.StringSliceFlag{
-		Name:  "buildeps",
+		Name:  "builddeps",
 		Usage: "dependencias de compilación",
 		Value: &cli.StringSlice{"golang"},
 	},

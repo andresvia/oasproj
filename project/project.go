@@ -89,7 +89,7 @@ func New(ctx *cli.Context) (p Project) {
 	p.Project_framework = ctx.String("framework")
 	p.Organizational_unit = ctx.String("orgunit")
 	p.Package_dependencies = ctx.StringSlice("deps")
-	p.Build_dependencies = ctx.StringSlice("buildeps")
+	p.Build_dependencies = ctx.StringSlice("builddeps")
 	return
 }
 

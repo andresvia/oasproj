@@ -10,6 +10,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"strings"
 )
 
 func projectGit(ctx *cli.Context) string {
@@ -119,6 +120,29 @@ func Update(ctx *cli.Context) (err error) {
 }
 
 func Validate(ctx *cli.Context) (err error) {
-	// test pasan
+	// test y otras validaciones pasan...
+	return
+}
+
+func Builddeps(ctx *cli.Context) (err error) {
+	if project.MetadataExists(cliutil.ProjectHome(ctx)) {
+		this_project := project.LoadProject(cliutil.ProjectHome(ctx))
+		install_args := []string{"install", "-y"}
+		builddeps := this_project.Build_dependencies
+		for _, builddep := range builddeps {
+			if strings.IndexAny(builddep, "()") == -1 {
+				install_args = append(install_args, builddep)
+			}
+		}
+		if len(install_args) > 2 {
+			install := exec.Command("yum", install_args...)
+			if err = install.Start(); err == nil {
+				fmt.Println("Esperando a la instalación de depedendencias de compilación")
+				err = install.Wait()
+			}
+		}
+	} else {
+		err = noProjectError
+	}
 	return
 }
