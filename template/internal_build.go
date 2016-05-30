@@ -48,9 +48,9 @@ then
     fpm_extra_flags="${fpm_extra_flags} --rpm-sign"
   fi
   fpm_dependencies=""
-{{range .Project.Package_dependencies -}}
+{{range .Project.Package_dependencies}}
     fpm_dependencies="${fpm_dependencies} -d '{{.}}'"
-{{- end}}
+{{end}}
   fpm --description='{{.Project.Project_description}}' --package=target -C target-root -s dir -t rpm $fpm_dependencies --name="${OAS_NAME}" --version="${OAS_VERSION}" --before-install scripts/before-install --after-install scripts/after-install --before-remove scripts/before-remove --after-remove scripts/after-remove --before-upgrade scripts/before-upgrade --after-upgrade scripts/after-upgrade --rpm-os linux ${fpm_extra_flags} .
 else
   echo no se encontró fpm
