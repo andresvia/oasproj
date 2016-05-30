@@ -16,6 +16,7 @@ func main() {
 	app.Name = "oasproj"
 	app.Usage = "Maneja proyectos de la OAS"
 	app.Version = "1.0.0"
+	app.EnableBashCompletion = true
 	app.Commands = []cli.Command{
 		cli.Command{
 			Name:   "show",
@@ -65,4 +66,43 @@ var updateFlags = []cli.Flag{
 	},
 }
 
-var initFlags = []cli.Flag{}
+var initFlags = []cli.Flag{
+	cli.StringFlag{
+		Name:  "name",
+		Usage: "nombre del projecto",
+		Value: "example-project",
+	},
+	cli.StringFlag{
+		Name:  "desc",
+		Usage: "descripción del projecto",
+		Value: "example description",
+	},
+	cli.StringFlag{
+		Name:  "purpose",
+		Usage: "propósito del projecto",
+		Value: "example purpose",
+	},
+	cli.StringFlag{
+		Name:  "language",
+		Usage: "lenguaje de programacion",
+		Value: "Go",
+	},
+	cli.StringFlag{
+		Name:  "framework",
+		Usage: "marco de trabajo",
+	},
+	cli.StringFlag{
+		Name:  "orgunit",
+		Usage: "unidad organizacional",
+		Value: "Interno",
+	},
+	cli.StringSliceFlag{
+		Name:  "deps",
+		Usage: "dependencias de instalación",
+	},
+	cli.StringSliceFlag{
+		Name:  "buildeps",
+		Usage: "dependencias de compilación",
+		Value: &cli.StringSlice{"golang"},
+	},
+}

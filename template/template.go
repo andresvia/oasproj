@@ -2,6 +2,7 @@ package template
 
 import (
 	"fmt"
+	"github.com/andresvia/oasproj/cliutil"
 	"github.com/andresvia/oasproj/project"
 	"gopkg.in/urfave/cli.v1"
 	"os"
@@ -31,7 +32,7 @@ func AllTemplates(ctx *cli.Context, this_project project.Project) []error {
 		templateFileContent[".internal/root/usr/lib/systemd/system/"+this_project.Project_name+".service"] = systemd_service
 	}
 	for file_path, file_template := range templateFileContent {
-		file_path = filepath.Join(ctx.Args().First(), file_path)
+		file_path = filepath.Join(cliutil.ProjectHome(ctx), file_path)
 		dir := path.Dir(file_path)
 		if _, err := os.Stat(dir); os.IsNotExist(err) {
 			if err := os.MkdirAll(dir, 0755); err != nil {

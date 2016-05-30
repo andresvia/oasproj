@@ -2,6 +2,7 @@ package project
 
 import (
 	"bytes"
+	"gopkg.in/urfave/cli.v1"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"os"
@@ -76,6 +77,31 @@ func MetadataExists(path string) (exists bool) {
 		exists = false
 	} else {
 		exists = true
+	}
+	return
+}
+
+func New(ctx *cli.Context) (p Project) {
+	p.Project_name = ctx.String("name")
+	p.Project_description = ctx.String("desc")
+	p.Project_purpose = ctx.String("purpose")
+	p.Programming_language = ctx.String("language")
+	p.Project_framework = ctx.String("framework")
+	p.Organizational_unit = ctx.String("orgunit")
+	p.Package_dependencies = ctx.StringSlice("deps")
+	p.Build_dependencies = ctx.StringSlice("buildeps")
+	return
+}
+
+func (p Project) WriteFile(base string) (err error) {
+	file_path := getMetadataPath(base)
+	var file *os.File
+	var buf []byte
+	if buf, err = yaml.Marshal(p); err == nil {
+		if file, err = os.Create(file_path); err == nil {
+			defer file.Close()
+			_, err = file.Write(buf)
+		}
 	}
 	return
 }
