@@ -45,9 +45,7 @@ then
   then
     fpm_extra_flags="${fpm_extra_flags} --rpm-sign"
   fi
-  fpm_dependencies=""
-
-  fpm --description='Maneja los proyectos de la OAS' --package=target -C target-root -s dir -t rpm $fpm_dependencies --name="${OAS_NAME}" --version="${OAS_VERSION}" --before-install scripts/before-install --after-install scripts/after-install --before-remove scripts/before-remove --after-remove scripts/after-remove --before-upgrade scripts/before-upgrade --after-upgrade scripts/after-upgrade --rpm-os linux ${fpm_extra_flags} .
+  fpm --description='Maneja los proyectos de la OAS' --package=target -C target-root -s dir -t rpm --name="oasproj"  --version="${OAS_VERSION}" --before-install scripts/before-install --after-install scripts/after-install --before-remove scripts/before-remove --after-remove scripts/after-remove --before-upgrade scripts/before-upgrade --after-upgrade scripts/after-upgrade --rpm-os linux ${fpm_extra_flags} .
 else
   echo no se encontró fpm
   exit 1
