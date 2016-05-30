@@ -2,7 +2,7 @@ package template
 
 var systemd_service = `# {{.ForceUpdate}}
 [Unit]
-Description=udpack
+Description={{.Project.Project_description}}
 After=network.target
 
 [Service]
