@@ -7,10 +7,14 @@ organizational_unit: Interno
 package_dependencies:
 build_dependencies:
 - gcc
+- git
+- vim
 - make
 - ruby
 - golang
+- rpm-sign
 - rpm-build
 - ruby-devel
 - travis (gem)
 - github.com/mitchellh/gox (go)
+sign_package: true

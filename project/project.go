@@ -32,6 +32,7 @@ type Project struct {
 	Organizational_unit  string   `yaml:organizational_unit`
 	Package_dependencies []string `yaml:package_dependencies`
 	Build_dependencies   []string `yaml:build_dependencies`
+	Sign_package         bool     `yaml:sign_package`
 }
 
 func (p Project) String() (s string) {
