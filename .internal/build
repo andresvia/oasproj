@@ -38,7 +38,7 @@ then
   gem install fpm
 fi
 
-if fpm --version > /dev/null
+if fpm --help > /dev/null
 then
   fpm_extra_flags=""
   if [ -n "${OAS_SIGN_PACKAGE}" ]
