@@ -18,7 +18,6 @@ OAS_VERSION_MAJOR_MINOR="${DRONE_TAG:-$OAS_CURRENT_TAG}"
 OAS_VERSION_RELEASE="${DRONE_BUILD_NUMBER:-$(date +%s)}"
 OAS_VERSION="${OAS_VERSION_MAJOR_MINOR}.${OAS_VERSION_RELEASE}"
 OAS_NAME="{{.Project.Project_name}}"
-OAS_SIGN_PACKAGE="${OAS_SIGN_PACKAGE:-${DRONE_TAG:-}}"
 
 export OAS_VERSION
 export OAS_NAME
@@ -42,12 +41,8 @@ fi
 
 if fpm --help > /dev/null
 then
-  fpm_extra_flags=""
-  if [ -n "${OAS_SIGN_PACKAGE}" ]
-  then
-    fpm_extra_flags="${fpm_extra_flags} --rpm-sign"
-  fi
-  fpm --description='{{.Project.Project_description}}' --package=target -C target-root -s dir -t rpm --name="{{.Project.Project_name}}" {{range .Project.Package_dependencies}} -d {{.}} {{end}} --version="${OAS_VERSION}" --before-install=scripts/before-install --after-install=scripts/after-install --before-remove=scripts/before-remove --after-remove=scripts/after-remove --before-upgrade=scripts/before-upgrade --after-upgrade=scripts/after-upgrade --rpm-os linux ${fpm_extra_flags} .
+  set -x
+  fpm --description '{{.Project.Project_description}}' --package target -C target-root -s dir -t rpm --name "{{.Project.Project_name}}" {{range .Project.Package_dependencies}} -d {{.}} {{end}} --version "${OAS_VERSION}" --before-install scripts/before-install --after-install scripts/after-install --before-remove scripts/before-remove --after-remove scripts/after-remove --before-upgrade scripts/before-upgrade --after-upgrade scripts/after-upgrade --rpm-os linux {{if .Project.Sign_package}}--rpm-sign{{end}} .
 else
   echo no se encontró fpm
   exit 1
