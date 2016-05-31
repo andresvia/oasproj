@@ -13,6 +13,7 @@ build_dependencies:
 - ruby
 - golang
 - rpm-sign
+- fpm (gem)
 - rpm-build
 - ruby-devel
 - travis (gem)
