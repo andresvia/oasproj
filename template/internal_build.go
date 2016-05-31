@@ -47,7 +47,7 @@ then
   then
     fpm_extra_flags="${fpm_extra_flags} --rpm-sign"
   fi
-  fpm --description='{{.Project.Project_description}}' --package=target -C target-root -s dir -t rpm --name="{{.Project.Project_name}}" {{range .Project.Package_dependencies}} -d {{.}} {{end}} --version="${OAS_VERSION}" --before-install scripts/before-install --after-install scripts/after-install --before-remove scripts/before-remove --after-remove scripts/after-remove --before-upgrade scripts/before-upgrade --after-upgrade scripts/after-upgrade --rpm-os linux ${fpm_extra_flags} .
+  fpm --description='{{.Project.Project_description}}' --package=target -C target-root -s dir -t rpm --name="{{.Project.Project_name}}" {{range .Project.Package_dependencies}} -d {{.}} {{end}} --version="${OAS_VERSION}" --before-install=scripts/before-install --after-install=scripts/after-install --before-remove=scripts/before-remove --after-remove=scripts/after-remove --before-upgrade=scripts/before-upgrade --after-upgrade=scripts/after-upgrade --rpm-os linux ${fpm_extra_flags} .
 else
   echo no se encontró fpm
   exit 1
