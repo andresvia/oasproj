@@ -18,4 +18,3 @@ build_dependencies:
 - ruby-devel
 - travis (gem)
 - github.com/mitchellh/gox (go)
-sign_package: true
