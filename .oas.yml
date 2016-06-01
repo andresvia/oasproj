@@ -5,6 +5,15 @@ programming_language: Go
 project_framework:
 organizational_unit: Interno
 package_dependencies:
+- gcc
+- git
+- vim
+- make
+- ruby
+- golang
+- rpm-sign
+- rpm-build
+- ruby-devel
 build_dependencies:
 - gcc
 - git
