@@ -1,4 +1,6 @@
 # Este archivo fue creado con "oasproj init" y será sobre-escrito con "oasproj update"
+
+
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
 *.o
 *.a
@@ -26,6 +28,8 @@ _testmain.go
 
 oasproj
 oasproj_*
+
+
 
 target
 target-root
