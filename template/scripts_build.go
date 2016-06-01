@@ -7,7 +7,7 @@ var scripts_build = `# {{.ForceUpdate}}
 # "${OAS_VERSION}"      => contiene la version a construir
 # "${OAS_NAME}"         => nombre del paquete que proviene del archivo de descripción de proyecto
 
-{{if eq (.Project.Programming_language) "Go" -}}
+{{if eq (.Project.Programming_language) "Go"}}
 
 # "${GO_BUILD}"         => contiene un comando "go build" dependiente de la plataforma objetivo que puede hacer compilación directa o crosscompilación de binarios de Go
 # "${GO_ARTIFACT}"      => contiene el artefacto dependiente de la plataforma objetivo que se construyó
@@ -23,5 +23,5 @@ $GO_BUILD
 mkdir -p target-root/usr/bin
 cp -v "${GO_ARTIFACT}" "target-root/usr/bin/${OAS_NAME}"
 
-{{- end}}
+{{end}}
 `

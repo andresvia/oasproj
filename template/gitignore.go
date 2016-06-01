@@ -1,7 +1,7 @@
 package template
 
 var gitignore = `# {{.Update}}
-{{if eq (.Project.Programming_language) "Go" -}}
+{{if eq (.Project.Programming_language) "Go"}}
 
 # Compiled Object files, Static and Dynamic libs (Shared Objects)
 *.o
@@ -31,7 +31,7 @@ _testmain.go
 {{.Project.Project_name}}
 {{.Project.Project_name}}_*
 
-{{- end}}
+{{end}}
 
 target
 target-root
