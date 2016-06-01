@@ -19,6 +19,9 @@ OAS_VERSION_PATCH="${OAS_VERSION_PATCH:-0}"
 if [ "${DRONE:-false}" = "true" ]
 then
   OAS_VERSION_META="drone.${DRONE_BUILD_NUMBER:-missing_drone_build_number.$(date +%s)}"
+elif [ "${TRAVIS:-false}" = "true" ]
+then
+  OAS_VERSION_META="travis.${TRAVIS_BUILD_NUMBER:-missing_travis_build_number.$(date +%s)}"
 else
   OAS_VERSION_META="local.$(date +%s)"
 fi
