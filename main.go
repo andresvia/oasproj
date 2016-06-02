@@ -15,7 +15,7 @@ func main() {
 	app := cli.NewApp()
 	app.Name = "oasproj"
 	app.Usage = "Maneja proyectos de la OAS"
-	app.Version = "1.0.1"
+	app.Version = "1.0"
 	app.EnableBashCompletion = true
 	app.Commands = []cli.Command{
 		cli.Command{

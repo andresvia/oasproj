@@ -18,7 +18,7 @@ type TemplateInfo struct {
 	ForceUpdate string
 }
 
-func CreateDefaultTemplateInfo(this_project project.Project) (template_info TemplateInfo) {
+func createDefaultTemplateInfo(this_project project.Project) (template_info TemplateInfo) {
 	template_info.Project = this_project
 	template_info.Create = `Este archivo fue creado con "oasproj init"`
 	template_info.Update = `Este archivo fue creado con "oasproj init" y será sobre-escrito con "oasproj update"`
@@ -26,7 +26,8 @@ func CreateDefaultTemplateInfo(this_project project.Project) (template_info Temp
 	return
 }
 
-func AllTemplates(ctx *cli.Context, this_project project.Project) []error {
+func DoTemplates(ctx *cli.Context) []error {
+	this_project := project.LoadProject(cliutil.ProjectHome(ctx))
 	errors := []error{}
 	if ctx.Bool("with-daemon") {
 		templateFileContent["root/usr/lib/systemd/system/"+this_project.Project_name+".service"] = systemd_service
@@ -68,7 +69,7 @@ func writeTemplate(file_path, file_template string, this_project project.Project
 		defer file.Close()
 		var t *template.Template
 		if t, err = template.New(file_path).Parse(file_template); err == nil {
-			template_info := CreateDefaultTemplateInfo(this_project)
+			template_info := createDefaultTemplateInfo(this_project)
 			err = t.Execute(file, &template_info)
 		}
 	}

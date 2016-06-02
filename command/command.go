@@ -65,8 +65,7 @@ func gitInit(ctx *cli.Context) (err error) {
 }
 
 func createOrUpdateProjectFiles(ctx *cli.Context) (err error) {
-	this_project := project.LoadProject(cliutil.ProjectHome(ctx))
-	if errs := template.AllTemplates(ctx, this_project); len(errs) > 0 {
+	if errs := template.DoTemplates(ctx); len(errs) > 0 {
 		err = errs[0]
 	}
 	return
