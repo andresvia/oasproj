@@ -1,8 +1,10 @@
 package project
 
 import (
+	"flag"
 	"fmt"
 	. "github.com/smartystreets/goconvey/convey"
+	"gopkg.in/urfave/cli.v1"
 	"testing"
 )
 
@@ -48,6 +50,44 @@ func TestMetadataExists(t *testing.T) {
 		})
 		Convey("Detectar usencia de metadatos", func() {
 			So(MetadataExists("../test-data/project/proyecto_inexistente"), ShouldEqual, false)
+		})
+	})
+}
+
+func TestNew(t *testing.T) {
+	Convey("Dado un Context de cli con un FlagSet determinado", t, func() {
+		fs := flag.NewFlagSet("for-test", flag.ContinueOnError)
+		fs.String("name", "project_name", "")
+		fs.String("desc", "project_description", "")
+		ctx := cli.NewContext(cli.NewApp(), fs, nil)
+		Convey("El Context no debe ser nil", func() {
+			So(ctx, ShouldNotBeNil)
+		})
+		Convey("El Project tiene las propiedades este Context", func() {
+			p := New(ctx)
+			Convey("Tales como el nombre del projecto", func() {
+				So(p.Project_name, ShouldEqual, "project_name")
+			})
+			Convey("y la descripción del projecto", func() {
+				So(p.Project_description, ShouldEqual, "project_description")
+			})
+		})
+	})
+}
+
+func TestWriteFile(t *testing.T) {
+	Convey("Dado un Context de cli con un FlagSet determinado", t, func() {
+		fs := flag.NewFlagSet("for-test", flag.ContinueOnError)
+		fs.String("name", "project_name", "")
+		fs.String("desc", "project_description", "")
+		ctx := cli.NewContext(cli.NewApp(), fs, nil)
+		Convey("El Context no debe ser nil", func() {
+			So(ctx, ShouldNotBeNil)
+		})
+		Convey("Y se puede escribir un archivo de descripcion del proyecto sin problemas", func() {
+			p := New(ctx)
+			err := p.WriteFile("../test-data/project/proyecto_TestWriteFile")
+			So(err, ShouldBeNil)
 		})
 	})
 }

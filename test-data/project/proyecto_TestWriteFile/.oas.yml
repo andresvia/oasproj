@@ -1,0 +1,9 @@
+project_name: project_name
+project_description: project_description
+project_purpose: ""
+programming_language: ""
+project_framework: ""
+organizational_unit: ""
+package_dependencies: []
+build_dependencies: []
+sign_package: false
