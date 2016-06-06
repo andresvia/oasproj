@@ -2,5 +2,5 @@ build:
   image: golang
   commands:
     - go get -v ./...
-    - go build
     - go test -v ./...
+    - go build
