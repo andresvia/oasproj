@@ -95,6 +95,16 @@ func Show(ctx *cli.Context) (err error) {
 	return
 }
 
+func Register(ctx *cli.Context) (err error) {
+	if project.MetadataExists(cliutil.ProjectHome(ctx)) {
+		this_project := project.LoadProject(cliutil.ProjectHome(ctx))
+		fmt.Println(this_project)
+	} else {
+		err = noProjectError
+	}
+	return
+}
+
 func Check(ctx *cli.Context) (err error) {
 	if !project.MetadataExists(cliutil.ProjectHome(ctx)) {
 		err = noProjectError

@@ -45,6 +45,11 @@ func main() {
 			Usage:  "instala dependencias de compilación",
 			Action: command.Builddeps,
 		},
+		cli.Command{
+			Name:   "register",
+			Usage:  "registra la información del servicio en el catalogo de servicios de la OAS",
+			Action: command.Register,
+		},
 		//cli.Command{
 		//	Name:   "validate",
 		//	Usage:  "valida que el proyecto este listo para publicación",
