@@ -4,6 +4,12 @@ project_purpose: Probar que al cargar este proyecto no se entra en pánico
 programming_language: Go
 organizational_unit: Interno
 package_dependencies:
-- pkg1
-- pkg2
-- pkg3
+  os:
+  - pkg1
+  - pkg2
+  - pkg3
+build_dependencies:
+  os:
+  - pkg1
+  - pkg2
+  - pkg3

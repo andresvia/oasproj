@@ -32,7 +32,7 @@ func TestLoadProject(t *testing.T) {
 			So(p.Project_purpose, ShouldEqual, "Probar que al cargar este proyecto no se entra en pánico")
 			So(p.Programming_language, ShouldEqual, "Go")
 			So(p.Organizational_unit, ShouldEqual, "Interno")
-			So(p.Package_dependencies, ShouldHaveSameTypeAs, []string{})
+			So(p.Package_dependencies, ShouldHaveSameTypeAs, map[string][]string{})
 		})
 		Convey("Tiene una representación textual correcta", func() {
 			So(fmt.Sprintf("%s", p), ShouldNotBeEmpty)

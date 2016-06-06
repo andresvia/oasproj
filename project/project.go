@@ -18,21 +18,24 @@ Propósito del proyecto: {{.Project_purpose}}
 Lenguaje de programación: {{.Programming_language}}
 Marco de trabajo de proyecto: {{.Project_framework}}
 Unidad organizacional: {{.Organizational_unit}}
-Dependencias del paquete: {{range .Package_dependencies}}
-- {{.}}{{end}}
-Dependencias de compilación: {{range .Build_dependencies}}
-- {{.}}{{end}}`
+Servicio: {{.Daemon}}
+Dependencias del paquete: {{range $key, $value := .Package_dependencies}}
+  {{$key}}{{range $value}}
+  - {{.}}{{end}}{{end}}
+Dependencias de compilación: {{range $key, $value := .Build_dependencies}}
+  {{$key}}{{range $value}}
+  - {{.}}{{end}}{{end}}`
 
 type Project struct {
-	Project_name         string   `yaml:project_name`
-	Project_description  string   `yaml:project_description`
-	Project_purpose      string   `yaml:project_purpose`
-	Programming_language string   `yaml:programming_language`
-	Project_framework    string   `yaml:project_framework`
-	Organizational_unit  string   `yaml:organizational_unit`
-	Package_dependencies []string `yaml:package_dependencies`
-	Build_dependencies   []string `yaml:build_dependencies`
-	Sign_package         bool     `yaml:sign_package`
+	Project_name         string              `yaml:project_name`
+	Project_description  string              `yaml:project_description`
+	Project_purpose      string              `yaml:project_purpose`
+	Programming_language string              `yaml:programming_language`
+	Project_framework    string              `yaml:project_framework`
+	Organizational_unit  string              `yaml:organizational_unit`
+	Package_dependencies map[string][]string `yaml:package_dependencies`
+	Build_dependencies   map[string][]string `yaml:build_dependencies`
+	Daemon               bool                `yaml:daemon`
 }
 
 func (p Project) String() (s string) {
@@ -89,8 +92,6 @@ func New(ctx *cli.Context) (p Project) {
 	p.Programming_language = ctx.String("language")
 	p.Project_framework = ctx.String("framework")
 	p.Organizational_unit = ctx.String("orgunit")
-	p.Package_dependencies = ctx.StringSlice("deps")
-	p.Build_dependencies = ctx.StringSlice("builddeps")
 	return
 }
 

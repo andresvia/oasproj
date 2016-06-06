@@ -1,30 +1,33 @@
 project_name: oasproj
 project_description: Maneja los proyectos de la OAS
 project_purpose: Estandarizar el proceso de desarrollo de la OAS
+project_framework: cli
 programming_language: Go
-project_framework:
 organizational_unit: Interno
 package_dependencies:
-- gcc
-- git
-- vim
-- make
-- ruby
-- golang
-- rpm-sign
-- rpm-build
-- ruby-devel
+  os:
+  - gcc
+  - git
+  - vim
+  - make
+  - ruby
+  - golang
+  - rpm-sign
+  - rpm-build
+  - ruby-devel
 build_dependencies:
-- gcc
-- git
-- vim
-- make
-- ruby
-- golang
-- rpm-sign
-- fpm (gem)
-- rpm-build
-- ruby-devel
-- travis (gem)
-- github.com/mitchellh/gox (go)
-sign_package: true
+  os:
+  - gcc
+  - git
+  - vim
+  - make
+  - ruby
+  - golang
+  - rpm-sign
+  - rpm-build
+  - ruby-devel
+  gem:
+  - fpm
+  - travis
+  go:
+  - github.com/mitchellh/gox

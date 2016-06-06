@@ -29,7 +29,7 @@ func createDefaultTemplateInfo(this_project project.Project) (template_info Temp
 func DoTemplates(ctx *cli.Context) []error {
 	this_project := project.LoadProject(cliutil.ProjectHome(ctx))
 	errors := []error{}
-	if ctx.Bool("with-daemon") {
+	if this_project.Daemon {
 		templateFileContent["root/usr/lib/systemd/system/"+this_project.Project_name+".service"] = systemd_service
 	}
 	for file_path, file_template := range templateFileContent {

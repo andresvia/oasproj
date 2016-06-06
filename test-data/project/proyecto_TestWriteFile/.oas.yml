@@ -4,6 +4,5 @@ project_purpose: ""
 programming_language: ""
 project_framework: ""
 organizational_unit: ""
-package_dependencies: []
-build_dependencies: []
-sign_package: false
+package_dependencies:
+build_dependencies:
