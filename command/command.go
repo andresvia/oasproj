@@ -6,6 +6,7 @@ import (
 	"github.com/andresvia/oasproj/cliutil"
 	"github.com/andresvia/oasproj/project"
 	"github.com/andresvia/oasproj/template"
+	"github.com/andresvia/oasproj/consul"
 	"gopkg.in/urfave/cli.v1"
 	"os"
 	"os/exec"
@@ -98,7 +99,10 @@ func Show(ctx *cli.Context) (err error) {
 func Register(ctx *cli.Context) (err error) {
 	if project.MetadataExists(cliutil.ProjectHome(ctx)) {
 		this_project := project.LoadProject(cliutil.ProjectHome(ctx))
-		fmt.Println(this_project)
+		var cat consul.Catalog
+		if cat, err = consul.New(this_project); err == nil {
+			err = cat.Register()
+		}
 	} else {
 		err = noProjectError
 	}
