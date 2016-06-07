@@ -12,7 +12,7 @@ import (
 
 const metadata_file = ".oas.yml"
 
-var showProjectTemplate = `Nombre del proyecto: {{.Project_name}}
+var ShowProjectTemplate = `Nombre del proyecto: {{.Project_name}}
 Descripción del proyecto: {{.Project_description}}
 Propósito del proyecto: {{.Project_purpose}}
 Lenguaje de programación: {{.Programming_language}}
@@ -41,7 +41,7 @@ type Project struct {
 func (p Project) String() (s string) {
 	var err error
 	var t *template.Template
-	if t, err = template.New("project").Parse(showProjectTemplate); err == nil {
+	if t, err = template.New("project").Parse(ShowProjectTemplate); err == nil {
 		var txt bytes.Buffer
 		if err = t.Execute(&txt, &p); err == nil {
 			s = txt.String()

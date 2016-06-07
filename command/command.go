@@ -4,59 +4,28 @@ import (
 	"errors"
 	"fmt"
 	"github.com/andresvia/oasproj/cliutil"
+	"github.com/andresvia/oasproj/errutil"
 	"github.com/andresvia/oasproj/project"
 	"github.com/andresvia/oasproj/template"
 	"gopkg.in/urfave/cli.v1"
 	"os"
 	"os/exec"
-	"path/filepath"
 	"strings"
 )
 
-func projectGit(ctx *cli.Context) string {
-	return filepath.Join(cliutil.ProjectHome(ctx), ".git")
-}
-
-func projectHomeExists(ctx *cli.Context) bool {
-	if _, err := os.Stat(cliutil.ProjectHome(ctx)); os.IsNotExist(err) {
-		return false
-	} else {
-		return true
-	}
-}
-
-func projectGitExists(ctx *cli.Context) bool {
-	if _, err := os.Stat(projectGit(ctx)); os.IsNotExist(err) {
-		return false
-	} else {
-		return true
-	}
-}
-
 func ensureProjectHome(ctx *cli.Context) (err error) {
-	if !projectHomeExists(ctx) {
-		if err = os.MkdirAll(cliutil.ProjectHome(ctx), 0755); err == nil {
-			err = gitInit(ctx)
-		}
-	} else if !projectGitExists(ctx) {
-		err = gitInit(ctx)
+	if err = os.MkdirAll(cliutil.ProjectHome(ctx), 0755); err == nil {
+		err = ensureProjectGit(ctx)
 	}
 	return
 }
 
 func ensureProjectGit(ctx *cli.Context) (err error) {
-	if !projectGitExists(ctx) {
-		err = gitInit(ctx)
-	}
-	return
-}
-
-func gitInit(ctx *cli.Context) (err error) {
 	var out []byte
 	pwd, _ := os.Getwd()
 	if err = os.Chdir(cliutil.ProjectHome(ctx)); err == nil {
 		git_init := exec.Command("git", "init")
-		if out, err = git_init.CombinedOutput(); err == nil {
+		if out, _ = git_init.CombinedOutput(); err == nil {
 			fmt.Printf("%s", string(out[:]))
 		}
 	}
@@ -65,21 +34,16 @@ func gitInit(ctx *cli.Context) (err error) {
 }
 
 func createOrUpdateProjectFiles(ctx *cli.Context) (err error) {
-	if errs := template.DoTemplates(ctx); len(errs) > 0 {
-		err = errs[0]
-	}
+	errs := template.DoTemplates(ctx)
+	err = errutil.FirstOrNil(errs)
 	return
 }
 
 func initializeProjectDescriptorFile(ctx *cli.Context) (err error) {
 	this_project := project.New(ctx)
-	if err = ensureProjectHome(ctx); err != nil {
-		return
+	if err = ensureProjectHome(ctx); err == nil {
+		err = this_project.WriteFile(cliutil.ProjectHome(ctx))
 	}
-	if err = ensureProjectGit(ctx); err != nil {
-		return
-	}
-	err = this_project.WriteFile(cliutil.ProjectHome(ctx))
 	return
 }
 

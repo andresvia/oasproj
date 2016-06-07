@@ -56,7 +56,7 @@ func TestMetadataExists(t *testing.T) {
 
 func TestNew(t *testing.T) {
 	Convey("Dado un Context de cli con un FlagSet determinado", t, func() {
-		fs := flag.NewFlagSet("for-test", flag.ContinueOnError)
+		fs := flag.NewFlagSet("", flag.ContinueOnError)
 		fs.String("name", "project_name", "")
 		fs.String("desc", "project_description", "")
 		ctx := cli.NewContext(cli.NewApp(), fs, nil)
@@ -77,7 +77,7 @@ func TestNew(t *testing.T) {
 
 func TestWriteFile(t *testing.T) {
 	Convey("Dado un Context de cli con un FlagSet determinado", t, func() {
-		fs := flag.NewFlagSet("for-test", flag.ContinueOnError)
+		fs := flag.NewFlagSet("", flag.ContinueOnError)
 		fs.String("name", "project_name", "")
 		fs.String("desc", "project_description", "")
 		ctx := cli.NewContext(cli.NewApp(), fs, nil)
