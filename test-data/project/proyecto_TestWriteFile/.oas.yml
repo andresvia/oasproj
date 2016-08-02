@@ -7,4 +7,5 @@ organizational_unit: ""
 package_dependencies: {}
 build_dependencies: {}
 daemon: false
+systemd_unit_after: ""
 sign_package: false
