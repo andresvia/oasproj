@@ -51,7 +51,7 @@ fi
 if fpm --help > /dev/null
 then
   set -x
-  fpm --description 'Maneja los proyectos de la OAS' --package target -C target-root -s dir -t rpm --name "oasproj" -d gcc -d git -d vim -d make -d ruby -d golang -d rpm-sign -d rpm-build -d ruby-devel --version "${OAS_VERSION}" --before-install scripts/before-install --after-install scripts/after-install --before-remove scripts/before-remove --after-remove scripts/after-remove --before-upgrade scripts/before-upgrade --after-upgrade scripts/after-upgrade --rpm-os linux --rpm-sign .
+  fpm --description 'Maneja los proyectos de la OAS' --package target -C target-root -s dir -t rpm --name "oasproj" -d gcc -d git -d vim -d make -d ruby -d golang -d rpm-sign -d rpm-build -d ruby-devel --version "${OAS_VERSION}" --before-install scripts/before-install --after-install scripts/after-install --before-remove scripts/before-remove --after-remove scripts/after-remove --before-upgrade scripts/before-upgrade --after-upgrade scripts/after-upgrade --rpm-os linux  .
 else
   echo no se encontró fpm
   exit 1

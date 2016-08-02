@@ -19,6 +19,7 @@ Lenguaje de programación: {{.Programming_language}}
 Marco de trabajo de proyecto: {{.Project_framework}}
 Unidad organizacional: {{.Organizational_unit}}
 Servicio: {{.Daemon}}
+Firmar: {{.Sign_package}}
 Dependencias del paquete: {{range $key, $value := .Package_dependencies}}
   {{$key}}{{range $value}}
   - {{.}}{{end}}{{end}}
@@ -36,6 +37,7 @@ type Project struct {
 	Package_dependencies map[string][]string `yaml:package_dependencies`
 	Build_dependencies   map[string][]string `yaml:build_dependencies`
 	Daemon               bool                `yaml:daemon`
+	Sign_package         bool                `yaml:daemon`
 }
 
 func (p Project) String() (s string) {

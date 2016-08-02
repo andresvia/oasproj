@@ -7,3 +7,4 @@ organizational_unit: ""
 package_dependencies: {}
 build_dependencies: {}
 daemon: false
+sign_package: false

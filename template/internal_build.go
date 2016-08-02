@@ -53,7 +53,7 @@ fi
 if fpm --help > /dev/null
 then
   set -x
-  fpm --description '{{.Project.Project_description}}' --package target -C target-root -s dir -t rpm --name "{{.Project.Project_name}}" {{range $key, $value := .Project.Package_dependencies}}{{if eq $key "os"}}{{range $value}}-d {{.}} {{end}}{{end}}{{end}}--version "${OAS_VERSION}" --before-install scripts/before-install --after-install scripts/after-install --before-remove scripts/before-remove --after-remove scripts/after-remove --before-upgrade scripts/before-upgrade --after-upgrade scripts/after-upgrade --rpm-os linux --rpm-sign .
+  fpm --description '{{.Project.Project_description}}' --package target -C target-root -s dir -t rpm --name "{{.Project.Project_name}}" {{range $key, $value := .Project.Package_dependencies}}{{if eq $key "os"}}{{range $value}}-d {{.}} {{end}}{{end}}{{end}}--version "${OAS_VERSION}" --before-install scripts/before-install --after-install scripts/after-install --before-remove scripts/before-remove --after-remove scripts/after-remove --before-upgrade scripts/before-upgrade --after-upgrade scripts/after-upgrade --rpm-os linux {{if .Project.Sign_package}}--rpm-sign{{end}} .
 else
   echo no se encontró fpm
   exit 1
