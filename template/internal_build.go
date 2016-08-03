@@ -46,7 +46,7 @@ source scripts/build
 # build the package
 rm -rvf target
 mkdir -p target
-if ! which fpm > /dev/null 2>&1
+if ! type fpm > /dev/null 2>&1
 then
   echo fpm no encontrado, tratando de instalar
   gem install fpm
