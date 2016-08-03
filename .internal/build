@@ -10,7 +10,9 @@ else
   GO_ARTIFACT="oasproj_linux_amd64"
 fi
 # oas build context
-OAS_CURRENT_TAG="$(git for-each-ref --sort=taggerdate --format '%(refname:short)' refs/tags | tail -n1)"
+OAS_TAG_META="${DRONE_COMMIT:-${TRAVIS_COMMIT:-}}"
+OAS_TAG_META="${OAS_TAG_META:-$(git rev-parse HEAD)}"
+OAS_CURRENT_TAG="$(git describe --tags --exact-match $OAS_TAG_META|tail -n1)"
 IFS="." read -r OAS_VERSION_MAJOR OAS_VERSION_MINOR OAS_VERSION_PATCH _JUNK <<< "${OAS_CURRENT_TAG}"
 OAS_VERSION_MAJOR="${OAS_VERSION_MAJOR/v/}"
 OAS_VERSION_MAJOR="${OAS_VERSION_MAJOR:-0}"
